@@ -1,7 +1,9 @@
+/*jshint esversion: 6 */
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default () => {
+const Other = () => {
   return (
     <div>
       Im some other page!
@@ -9,3 +11,5 @@ export default () => {
     </div>
   );
 };
+
+export default Other;

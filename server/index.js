@@ -1,3 +1,4 @@
+/*jshint esversion: 8 */
 const keys = require('./keys');
 
 // Express App Setup
