@@ -11,10 +11,10 @@ services:
       - POSTGRES_PASSWORD=postgres_password
   redis:
     image: 'redis:latest'
-  server:
+  api:
     build:
       dockerfile: Dockerfile.dev
-      context: ./server
+      context: ./api
     volumes:
       - /app/node_modules
       - ./server:/app
