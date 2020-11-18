@@ -28,6 +28,5 @@ after_success:
 # Push prodcution images to Docker Hub
   - docker push ghozt81nl/dockermulticicdclient
   - docker push ghozt81nl/dockermulticicdapi
-  - docker push ghozt81nl/dockermulticicdworker
   - docker push ghozt81nl/dockermulticicdnginx
-
+  - docker push ghozt81nl/dockermulticicdworker
