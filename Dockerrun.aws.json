@@ -1,0 +1,34 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "ghozt81nl/dockermulticicdclient",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "api",
+            "image": "ghozt81nl/dockermulticicdapi",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "ghozt81nl/dockermulticicdworker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "ghozt81nl/dockermulticicdnginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["client", "api"]
+        }
+    ]
+}
