@@ -1,0 +1,32 @@
+# Set up environment
+language: generic
+dist: xenial
+os: linux
+
+services:
+# Init Docker service for Travis-CI
+  - docker
+
+before_install:
+# Build React Docker image for testing
+  - docker build -t ghozt81nl/dockermulticicdclient -f ./client/Dockerfile.dev ./client
+
+script:
+# Run tests on React Docker image
+  - docker run -e CI=true ghozt81nl/dockermulticicdclient npm run test
+
+after_success:
+# Build production images
+  - docker build -t ghozt81nl/dockermulticicdclient ./client
+  - docker build -t ghozt81nl/dockermulticicdapi ./api
+  - docker build -t ghozt81nl/dockermulticicdnginx ./nginx
+  - docker build -t ghozt81nl/dockermulticicdworker ./worker
+
+# Log in to the Docker CLI using environment variables
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+# Push prodcution images to Docker Hub
+  - docker push ghozt81nl/dockermulticicdclient
+  - docker push ghozt81nl/dockermulticicdapi
+  - docker push ghozt81nl/dockermulticicdworker
+  - docker push ghozt81nl/dockermulticicdnginx
