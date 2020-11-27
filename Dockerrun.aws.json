@@ -5,17 +5,20 @@
             "name": "client",
             "image": "ghozt81nl/dockermulticicdclient",
             "hostname": "client",
+            "memory": 128,
             "essential": false
         },
         {
             "name": "api",
             "image": "ghozt81nl/dockermulticicdapi",
             "hostname": "api",
+            "memory": 128,
             "essential": false
         },
         {
             "name": "worker",
             "image": "ghozt81nl/dockermulticicdworker",
+            "memory": 128,
             "essential": false
         },
         {
@@ -28,6 +31,7 @@
                     "containerPort": 80
                 }
             ],
+            "memory": 128,
             "links": ["client", "api"]
         }
     ]
