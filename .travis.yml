@@ -21,3 +21,15 @@ after_success:
   - docker push ghozt81nl/dockermulticicdapi
   - docker push ghozt81nl/dockermulticicdnginx
   - docker push ghozt81nl/dockermulticicdworker
+
+deploy:
+  provider: elasticbeanstalk
+    region: "eu-west-1"
+    app: "Docker-Multi"
+    env: "DockerMulti-env"
+    bucket: "elasticbeanstalk-eu-west-1-011444914508"
+    bucket_path: "docker-multi"
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    on:
+        branch: master
