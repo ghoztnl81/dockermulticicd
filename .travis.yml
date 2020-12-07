@@ -12,12 +12,12 @@ script:
   - docker run -e CI=true ghozt81nl/dockermulticicdclient npm run test
 
 after_success:
-  - docker build -t ghozt81nl/dockermulticicdclient ./client
-  - docker build -t ghozt81nl/dockermulticicdapi ./api
-  - docker build -t ghozt81nl/dockermulticicdnginx ./nginx
-  - docker build -t ghozt81nl/dockermulticicdworker ./worker
+  - docker build -t ghozt81nl/dockermulticicdclient:v5 ./client
+  - docker build -t ghozt81nl/dockermulticicdapi:v5 ./api
+  - docker build -t ghozt81nl/dockermulticicdnginx:v5 ./nginx
+  - docker build -t ghozt81nl/dockermulticicdworker:v5 ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push ghozt81nl/dockermulticicdclient
-  - docker push ghozt81nl/dockermulticicdapi
-  - docker push ghozt81nl/dockermulticicdnginx
-  - docker push ghozt81nl/dockermulticicdworker
+  - docker push ghozt81nl/dockermulticicdclient:v5
+  - docker push ghozt81nl/dockermulticicdapi:v5
+  - docker push ghozt81nl/dockermulticicdnginx:v5
+  - docker push ghozt81nl/dockermulticicdworker:v5
